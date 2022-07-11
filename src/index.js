@@ -13,7 +13,7 @@ const DEBOUNCE_DELAY = 300;
 
 refs.searchBox.addEventListener(
     'input', 
-        debounce((e) => {getInputValue(e)}, DEBOUNCE_DELAY)
+        debounce(() => {getInputValue()}, DEBOUNCE_DELAY)
 );
 
 function countriesListTpl(items) {
@@ -45,7 +45,7 @@ function languagesId(elementId) {
     }
 }
 
-function getInputValue(evt) {
+function getInputValue() {
     let inputValue = refs.searchBox.value.toLowerCase().trim();
     fetchCountries(inputValue)
         .then(countries => {
