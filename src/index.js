@@ -13,7 +13,7 @@ const DEBOUNCE_DELAY = 300;
 
 refs.searchBox.addEventListener(
     'input', 
-        debounce(() => {getInputValue()}, DEBOUNCE_DELAY)
+        debounce((e) => {getInputValue(e)}, DEBOUNCE_DELAY)
 );
 
 function countriesListTpl(items) {
@@ -45,7 +45,7 @@ function languagesId(elementId) {
     }
 }
 
-function getInputValue() {
+function getInputValue(e) {
     let inputValue = refs.searchBox.value.toLowerCase().trim();
     fetchCountries(inputValue)
         .then(countries => {
@@ -59,19 +59,19 @@ function getInputValue() {
 
 function renderCountriesCard(countries) {
     refs.countryList.innerHTML = '';
-            refs.countryInfo.innerHTML = '';
+    refs.countryInfo.innerHTML = '';
     if (countries.length >= 2 && countries.length <= 10) {
         return refs.countryList.innerHTML = countriesListTpl(countries);
     } else 
-    if (countries.length === 1) {
-        return refs.countryList.innerHTML = countriesCardTpl(...countries);
+    if (countries.length > 10) {
+        return Notiflix.Notify.info('Too many matches found. Please enter a more specific name.')
     } else 
-    if (countries.length === 0) {
+    if (countries.length < 1) {
         refs.searchBox.value = '';
         return Notiflix.Notify.failure('Oops, there is no country with that name')
     }
+    return refs.countryList.innerHTML = countriesCardTpl(...countries);
     
-    Notiflix.Notify.info('Too many matches found. Please enter a more specific name.')
    
 }
 
