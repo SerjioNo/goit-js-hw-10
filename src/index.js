@@ -54,7 +54,6 @@ function getInputValue(e) {
             renderCountriesCard(countries)
         })   
         .catch(error => {
-        return Notiflix.Notify.failure('Oops, there is no country with that name')
             console.log(error);
         })
 }
