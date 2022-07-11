@@ -44,7 +44,6 @@ function languagesId(elementId) {
         refs.countryInfo.append(lastEl);
     }
 }
-     
 
 function getInputValue(evt) {
     let inputValue = refs.searchBox.value.toLowerCase().trim();
@@ -53,18 +52,18 @@ function getInputValue(evt) {
             renderCountriesCard(countries)
         })   
         .catch(error => {
+        return Notiflix.Notify.failure('Oops, there is no country with that name')
             console.log(error);
         })
 }
 
 function renderCountriesCard(countries) {
     refs.countryList.innerHTML = '';
+            refs.countryInfo.innerHTML = '';
     if (countries.length >= 2 && countries.length <= 10) {
-        refs.countryInfo.innerHTML = '';
         return refs.countryList.innerHTML = countriesListTpl(countries);
     } else 
     if (countries.length === 1) {
-        refs.countryInfo.innerHTML = '';
         return refs.countryList.innerHTML = countriesCardTpl(...countries);
     } else 
     if (countries.length === 0) {
