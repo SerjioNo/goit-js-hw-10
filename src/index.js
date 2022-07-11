@@ -46,6 +46,8 @@ function languagesId(elementId) {
 }
 
 function getInputValue(e) {
+    refs.countryList.innerHTML = '';
+    refs.countryInfo.innerHTML = '';
     let inputValue = refs.searchBox.value.toLowerCase().trim();
     fetchCountries(inputValue)
         .then(countries => {
@@ -58,8 +60,8 @@ function getInputValue(e) {
 }
 
 function renderCountriesCard(countries) {
-    refs.countryList.innerHTML = '';
-    refs.countryInfo.innerHTML = '';
+   
+    
     if (countries.length >= 2 && countries.length <= 10) {
         return refs.countryList.innerHTML = countriesListTpl(countries);
     } else 
