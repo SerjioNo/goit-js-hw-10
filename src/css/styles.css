@@ -27,9 +27,7 @@ body {
   margin-left: 100px;
 }
 
-.country-info {
-  display: flex;
-}
+.country-info {}
 
 .list-item {
   display: flex;
